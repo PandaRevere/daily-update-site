@@ -1,0 +1,56 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Daily Update</title>
+<style>
+body{font-family:Inter,Arial,sans-serif;background:#0f1220;color:#eef2ff;margin:0} .wrap{max-width:1050px;margin:0 auto;padding:20px}
+.card{background:#171b2f;border:1px solid #2a3159;border-radius:12px;padding:14px;margin:12px 0}
+h1{margin:0 0 8px} h2{margin:0 0 10px;color:#8cc6ff} a{color:#9bd2ff} .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pin{display:flex;gap:8px;align-items:center} input{padding:8px;border-radius:8px;border:1px solid #3a4478;background:#10162b;color:#fff}
+button{padding:8px 12px;border-radius:8px;border:none;background:#2e6dff;color:white;cursor:pointer}
+.small{color:#a6b2da;font-size:12px}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+</style></head><body><div class='wrap'>
+<h1>Daily Update</h1><div class='small'>Updated: 2026-02-27 08:54 PM CT</div>
+
+<div class='card'>
+<h2>🔒 Private Brief (Email + Calendar)</h2>
+<div class='pin'><input id='pin' maxlength='4' placeholder='Enter 4-digit PIN'><button onclick='unlock()'>Unlock</button></div>
+<div id='private' style='display:none'>
+  <h3>Calendar Summary</h3><ul><li>{'dateTime': '2026-02-27T17:00:00-06:00', 'timeZone': 'America/Chicago'} — Lauren Out with Keiko</li><li>{'dateTime': '2026-02-27T20:00:00-06:00', 'timeZone': 'America/Chicago'} — Work from Home Block (Friday)</li></ul>
+  <h3>Email Summary</h3><ul><li>2026-02-27 17:55 — Lauren Riviere <laanders@gmail.com> — Invitation: MONSTER JAM @ Sat Feb 28, 2026 1pm - 2pm (CST) (Andy R)</li><li>2026-02-26 17:11 — LinkedIn <messages-noreply@linkedin.com> — These Business Development Consultant skills are in demand: Marketing, Business</li><li>2026-02-26 10:07 — D220SEPAC <d220sepac@gmail.com> — Reminder: Inclusion Guide - Feedback and contacts needed by March 1</li></ul>
+</div>
+<div id='pinmsg' class='small'></div>
+</div>
+
+<div class='grid'>
+  <div class='card'><h2>📰 Reuters Headlines</h2><ul><li><a href='https://www.reuters.com' target='_blank' rel='noreferrer'>Reuters headlines unavailable right now</a></li></ul></div>
+  <div class='card'><h2>🗞️ NYT Headlines</h2><ul><li><a href='https://www.nytimes.com/2026/02/27/us/politics/anthropic-military-ai.html' target='_blank' rel='noreferrer'>Trump Orders U.S. Agencies to Stop Using Anthropic AI Tech After Pentagon Standoff</a></li><li><a href='https://www.nytimes.com/2026/02/27/technology/defense-department-anthropic-ai-safety.html' target='_blank' rel='noreferrer'>Pentagon-Anthropic Standoff Is a Decisive Moment for How A.I. Will Be Used in War</a></li><li><a href='https://www.nytimes.com/2026/02/27/technology/anthropic-trump-pentagon-silicon-valley.html' target='_blank' rel='noreferrer'>Silicon Valley Rallies Behind Anthropic in A.I. Clash With Trump</a></li><li><a href='https://www.nytimes.com/2026/02/27/style/epstein-friends-associates-complicity.html' target='_blank' rel='noreferrer'>The Many Shades of Complicity in the Epstein Files Fallout</a></li><li><a href='https://www.nytimes.com/2026/02/27/us/lausd-superintendent-alberto-carvalho-fbi.html' target='_blank' rel='noreferrer'>L.A.U.S.D. Chief Alberto Carvalho Is Placed on Leave Following F.B.I. Raid</a></li></ul></div>
+</div>
+
+<div class='card'><h2>📺 TV Update</h2><ul><li>Cleveland Guardians @ Chicago Cubs — 2026-02-27T20:05:00Z — TV TBD</li></ul></div>
+
+<div class='grid'>
+  <div class='card'><h2>🔭 Astronomy Picture of the Day</h2><p><b>Sharpless 249 and the Jellyfish Nebula</b></p><img src='https://apod.nasa.gov/apod/image/2602/JellyfishBeecroft_final1_2048.jpg' style='max-width:100%;border-radius:8px'><p>Normally faint and elusive, the Jellyfish Nebula is caught in this alluring telescopic field of view. Floating in the interstellar sea, the nebula is anchored right and left by two bright stars, Mu and Eta Geminorum, at the foot of the celestial twins. The Jellyfish Nebula itself is right of center, seen as a brighter arcing ridge of emission with dangling tentacles. In fact, this cosmic jellyfish is part of bubble-shaped supernova remnant IC 443, the expanding debris cloud from a massive star t...</p><a href='https://apod.nasa.gov/apod/image/2602/JellyfishBeecroft_final1_1024.jpg' target='_blank'>Open source</a></div>
+  <div class='card'><h2>✨ James Webb Pick</h2><p><b>By the Dozen: NASA's James Webb Space Telescope Mirrors</b></p><img src='https://images-assets.nasa.gov/image/by-the-dozen-nasas-james-webb-space-telescope-mirrors_23938941370_o/by-the-dozen-nasas-james-webb-space-telescope-mirrors_23938941370_o~small.jpg' style='max-width:100%;border-radius:8px'><p><a href='https://images-assets.nasa.gov/image/by-the-dozen-nasas-james-webb-space-telescope-mirrors_23938941370_o/collection.json' target='_blank'>NASA collection</a></p></div>
+</div>
+
+<div class='card'><h2>🧠 Cool Fact of the Day</h2><p>In the last 4000 years no new animals have been domesticated.</p></div>
+
+</div>
+<script>
+const PIN_HASH = '9af15b336e6a9619928537df30b2e6a2376569fcf9d7e773eccede65606529a0';
+async function sha256(text){
+  const data = new TextEncoder().encode(text);
+  const hash = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+async function unlock(){
+  const v = document.getElementById('pin').value.trim();
+  const h = await sha256(v);
+  if(h === PIN_HASH){
+    document.getElementById('private').style.display='block';
+    document.getElementById('pinmsg').innerText='Unlocked';
+  } else {
+    document.getElementById('pinmsg').innerText='Wrong PIN';
+  }
+}
+</script></body></html>
