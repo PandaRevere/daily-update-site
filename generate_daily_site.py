@@ -126,6 +126,18 @@ try:
 except Exception:
     nyt = [('NYT headlines unavailable', 'https://www.nytimes.com')]
 
+# --- Quotes of the day ---
+philosophy_quote = "The happiness of your life depends upon the quality of your thoughts. — Marcus Aurelius"
+biblical_quote = "Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go. — Joshua 1:9"
+science_quote = "Somewhere, something incredible is waiting to be known. — Carl Sagan"
+
+try:
+    q = fetch_json('https://zenquotes.io/api/random')
+    if isinstance(q, list) and q:
+        philosophy_quote = f"{q[0].get('q','')} — {q[0].get('a','')}"
+except Exception:
+    pass
+
 # --- APOD + JWST + fact ---
 apod = {'title':'Astronomy Picture of the Day','url':'','image':'','desc':''}
 try:
@@ -233,6 +245,11 @@ h1{{margin:0 0 8px}} h2{{margin:0 0 10px;color:#8cc6ff}} a{{color:#9bd2ff}}
   <div class='card'><h2>✨ James Webb Pick</h2><p><b>{jwst['title']}</b></p>{f"<img src='{jwst['image']}' style='max-width:100%;border-radius:8px'>" if jwst['image'] else ''}{f"<p><a href='{jwst['url']}' target='_blank'>NASA collection</a></p>" if jwst['url'] else ''}</div>
 </div>
 
+<div class='grid'>
+  <div class='card'><h2>🧭 Philosophy Quote of the Day</h2><p>{philosophy_quote}</p></div>
+  <div class='card'><h2>✝️ Biblical Quote of the Day</h2><p>{biblical_quote}</p></div>
+</div>
+<div class='card'><h2>🔬 Science Quote of the Day</h2><p>{science_quote}</p></div>
 <div class='card'><h2>🧠 Cool Fact of the Day</h2><p>{fact}</p></div>
 </div></body></html>"""
 
