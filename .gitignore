@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+
+# Local env/secrets
+.env
+.env.*
+secrets.*
+*.key
+*.pem
+
+# Local logs/artifacts
+*.log
+*.tmp
+.DS_Store
